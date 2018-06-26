@@ -1,11 +1,15 @@
 
 const express = require('express');
 const app = express(); 
+const dataFile = require('./data/data.json');// requiring data.json; 
+app.set('port', process.env.PORT ||3000); // setting default to 3000 when user did not declear port number
+
+
 app.get('/',(req, res)=>{
     res.send('<h1>Building website through node.js and express.js</h1>');
 });
-const server = app.listen(3000, ()=>{
-  console.log('Express Server running on Localhost: 3000');
+const server = app.listen(app.get('port'), ()=>{
+  console.log('Express Server running on Localhost: ' + app.get('port'));
 });
 
 
