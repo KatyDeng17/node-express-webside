@@ -6,7 +6,19 @@ app.set('port', process.env.PORT ||3000); // setting default to 3000 when user d
 
 
 app.get('/',(req, res)=>{
-    res.send('<h1>Building website through node.js and express.js</h1>');
+    let info = ''; 
+    dataFile.speakers.forEach((item)=>{
+      info += `
+       <li> 
+         <h2>${item.name}</h2> 
+         <p>${item.summary}</p>
+      `;
+    });
+
+    res.send(`
+       <h1> Roux Academy Meetup</h1>
+       ${info}
+    `);
 });
 const server = app.listen(app.get('port'), ()=>{
   console.log('Express Server running on Localhost: ' + app.get('port'));
